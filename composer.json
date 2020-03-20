@@ -1,0 +1,27 @@
+{
+	"name" : "hallewood/apns-sdk-php",
+	"type" : "library",
+	"description" : "An easy to use wrapper in PHP applications for the Apple Push Notification Service.",
+	"keywords" : ["apns", "aps", "apple", "push", "notification"],
+	"homepage" : "https://github.com/hallewood/apns-sdk-php",
+	"license" : "MIT",
+	"authors" : [
+		{
+			"name" : "Dennis Prudlo",
+			"email" : "mail@dennisprudlo.com",
+			"homepage" : "http://dennisprudlo.com",
+			"role" : "Developer"
+		}
+	],
+	"require" : {
+		"php" : ">=5.2.0",
+		"ext-json": "*",
+		"ext-curl": "*",
+		"ext-openssl": "*"
+	},
+	"autoload" : {
+		"psr-4" : {
+			"Hallewood\\APNS" : "src\\"
+		}
+	}
+}
