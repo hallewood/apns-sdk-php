@@ -21,7 +21,7 @@
 	},
 	"autoload" : {
 		"psr-4" : {
-			"Hallewood\\APNS" : "src\\"
+			"Hallewood\\APNS\\" : "src\\"
 		}
 	}
 }
