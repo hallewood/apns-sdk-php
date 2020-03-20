@@ -1,7 +1,7 @@
 {
 	"name" : "hallewood/apns-sdk-php",
 	"type" : "library",
-	"description" : "An easy to use wrapper in PHP applications for the Apple Push Notification Service.",
+	"description" : "An easy to use Apple Push Notification Service wrapper for PHP applications.",
 	"keywords" : ["apns", "aps", "apple", "push", "notification"],
 	"homepage" : "https://github.com/hallewood/apns-sdk-php",
 	"license" : "MIT",
