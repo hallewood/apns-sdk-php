@@ -38,14 +38,14 @@ class Aps {
 	 * Determines whether the notifiction is silent and used to update data in the background.
 	 * @var bool
 	 */
-	public $isContentAvailable;
+	public $isContentAvailable = false;
 
 	/**
 	 * Determines whether the notification is being passed to the application notification service
 	 * app extension for handling the received data before displaying it.
 	 * @var bool
 	 */
-	public $isMutableContent;
+	public $isMutableContent = false;
 
 	/**
 	 * An identifier to determine which window should be brought up after interacting with the notification.
@@ -90,5 +90,48 @@ class Aps {
 	 */
 	public function getSound() : Sound {
 		return $this->sound;
+	}
+
+	/**
+	 * Returns the APS payload
+	 * @method json
+	 * @return array The APS payload
+	 */
+	public function jsonSerializable() {
+		$serializable = [];
+
+		if ($this->getAlert()->hasContent()) {
+			$serializable['alert'] = $this->getAlert()->jsonSerializable();
+		}
+
+		if (isset($this->badge)) {
+			$serializable['badge'] = $this->badge;
+		}
+
+		if (isset($this->getSound()->name)) {
+			$serializable['sound'] = $this->getSound()->jsonSerializable();
+		}
+
+		if (isset($this->threadId)) {
+			$serializable['thread-id'] = $this->threadId;
+		}
+
+		if (isset($this->category)) {
+			$serializable['category'] = $this->category;
+		}
+
+		if (isset($this->isContentAvailable) && $this->isContentAvailable) {
+			$serializable['content-available'] = 1;
+		}
+
+		if (isset($this->isMutableContent) && $this->isMutableContent) {
+			$serializable['mutable-content'] = 1;
+		}
+
+		if (isset($this->targetContentId)) {
+			$serializable['target-content-id'] = $this->targetContentId;
+		}
+
+		return $serializable;
 	}
 }

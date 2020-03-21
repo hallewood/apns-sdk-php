@@ -3,8 +3,9 @@
 namespace Hallewood\APNS;
 
 use Hallewood\APNS\Notification\Aps;
+use Hallewood\APNS\Promises\SerializesIntoJson;
 
-class Notification {
+class Notification implements SerializesIntoJson {
 
 	/**
 	 * The APS dictionary instance
@@ -209,5 +210,22 @@ class Notification {
 		}
 
 		return $this;
+	}
+
+	/**
+	 * Returns the notification payload
+	 * @method json
+	 * @return array Return the notification payload
+	 */
+	public function jsonSerializable() {
+		$payload = [];
+
+		foreach ($this->userInfo as $property => $data) {
+			$payload[$property] = $data;
+		}
+
+		$payload['aps'] = $this->aps->jsonSerializable();
+
+		return $payload;
 	}
 }

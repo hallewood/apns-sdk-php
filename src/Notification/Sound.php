@@ -16,13 +16,13 @@ class Sound implements SoundSetterPromise {
 	 * Determines whether the notification is critical.
 	 * @var bool
 	 */
-	protected $isCritical;
+	protected $isCritical = false;
 
 	/**
 	 * The volume in percent that is being used to play the sound if it is marked as critical.
 	 * @var float
 	 */
-	protected $volume;
+	protected $volume = 1.0;
 
 	/**
 	 * Sets the sound file name
@@ -58,5 +58,22 @@ class Sound implements SoundSetterPromise {
 		$this->volume = min(1, max(0, $volume));
 
 		return $this;
+	}
+
+	/**
+	 * Returns the Sound payload
+	 * @method json
+	 * @return array The Sound payload
+	 */
+	public function jsonSerializable() {
+		if ($this->isCritical) {
+			return [
+				'sound'		=> $this->name,
+				'critical'	=> 1,
+				'volume'	=> $this->volume
+			];
+		}
+
+		return $this->name;
 	}
 }

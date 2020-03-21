@@ -204,4 +204,61 @@ class Alert implements AlertSetterPromise {
 
 		return $this;
 	}
+
+	/**
+	 * Checks whether the alert instance has any content to serialize
+	 * @method hasContent
+	 * @return bool       true if there is content to serialize
+	 */
+	public function hasContent() : bool {
+		foreach ($this as $key => $value) {
+			if (isset($value)) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * Returns the alert payload
+	 * @method json
+	 * @return array The alert payload
+	 */
+	public function jsonSerializable() {
+		$serializable = [];
+
+		if (isset($this->title)) {
+			$serializable['title'] = $this->title;
+		}
+
+		if (isset($this->subtitle)) {
+			$serializable['subtitle'] = $this->subtitle;
+		}
+
+		if (isset($this->body)) {
+			$serializable['body'] = $this->body;
+		}
+
+		if (isset($this->launchImage)) {
+			$serializable['launch-image'] = $this->launchImage;
+		}
+
+		if (isset($this->localizedTitleKey)) {
+			$serializable['title-loc-key']	= $this->localizedTitleKey;
+			$serializable['title-loc-args']	= $this->localizedTitleArguments ?? [];
+		}
+
+		if (isset($this->localizedSubtitleKey)) {
+			$serializable['subtitle-loc-key']	= $this->localizedSubtitleKey;
+			$serializable['subtitle-loc-args']	= $this->localizedSubtitleArguments ?? [];
+		}
+
+		if (isset($this->localizedKey)) {
+			$serializable['loc-key']	= $this->localizedKey;
+			$serializable['loc-args']	= $this->localizedArguments ?? [];
+		}
+
+		return $serializable;
+	}
 }
