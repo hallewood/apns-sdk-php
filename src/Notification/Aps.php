@@ -54,7 +54,7 @@ class Aps {
 	public $targetContentId;
 
 	/**
-	 * Construct the APS instance
+	 * Constructs the APS instance
 	 * @method __construct
 	 */
 	public function __construct() {

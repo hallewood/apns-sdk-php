@@ -12,8 +12,22 @@ class Notification {
 	 */
 	protected $aps;
 
+	/**
+	 * A dictionary with all user defined keys to append to the payload
+	 * @var array
+	 */
+	protected $userInfo;
+
+	/**
+	 * Constructs the notification
+	 * @method __construct
+	 */
 	public function __construct() {
-		$this->aps = new Aps;
+		$this->aps		= new Aps;
+
+		//
+		// Initialize the userInfo dictionary as an empty instance
+		$this->userInfo	= [];
 	}
 
 	/**
@@ -166,6 +180,33 @@ class Notification {
 	 */
 	public function target(string $identifier) : self {
 		$this->aps->targetContentId = $identifier;
+
+		return $this;
+	}
+
+	/**
+	 * Sets a userInfo entry for a given key
+	 * @method data
+	 * @param  string $key  The userInfo key
+	 * @param  mixed  $data The data to store for the key
+	 * @return self         The Notification instance for further chaining
+	 */
+	public function data(string $key, mixed $data) : self {
+		$this->userInfo[$key] = $data;
+
+		return $this;
+	}
+
+	/**
+	 * Sets a set of userInfo entries
+	 * @method dataset
+	 * @param  array   $set An assoc-array which will be injected into the userInfo
+	 * @return self         The Notification instance for further chaining
+	 */
+	public function dataset(array $set) : self {
+		foreach ($set as $key => $value) {
+			$this->userInfo($key, $value);
+		}
 
 		return $this;
 	}
