@@ -19,6 +19,9 @@
 		"ext-curl": "*",
 		"ext-openssl": "*"
 	},
+	"require-dev": {
+		"phpunit/phpunit": "^9"
+	},
 	"autoload" : {
 		"psr-4" : {
 			"Hallewood\\APNS\\" : "src\\"
