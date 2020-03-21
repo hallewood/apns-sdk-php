@@ -2,7 +2,7 @@
 
 namespace Hallewood\APNS\Notification;
 
-class ServicePayload {
+class Aps implements JsonSerializable {
 
 	/**
 	 * A notification-alert object for specifying the notification text.
@@ -52,9 +52,4 @@ class ServicePayload {
 	 * @var string
 	 */
 	protected $targetContentId;
-
-	public function __construct() {
-		$this->alert = new Alert;
-		$this->sound = new Sound;
-	}
 }

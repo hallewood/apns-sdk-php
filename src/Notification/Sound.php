@@ -2,7 +2,7 @@
 
 namespace Hallewood\APNS\Notification;
 
-class Sound {
+class Sound implements JsonSerializable {
 
 	/**
 	 * The name of the sound file to play when the notification is being received.
@@ -21,3 +21,4 @@ class Sound {
 	 * @var float
 	 */
 	protected $volume;
+}

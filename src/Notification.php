@@ -1,15 +1,19 @@
 <?php
 
-namespace Hallewood\APNS;
+namespace Hallewood\APNS\Notification;
 
-use Hallewood\APNS\Notification\ServicePayload;
+use Hallewood\APNS\Notification\Aps;
+use Hallewood\APNS\Notification\Alert;
+use Hallewood\APNS\Notification\Sound;
 
-class Notification {
+class Notification implements JsonSerializable {
 
-	protected $servicePayload;
+	protected $aps;
 
 	public function __construct() {
-		$this->servicePayload = new ServicePayload;
+		$this->aps			= new Aps;
+		$this->aps->alert	= new Alert;
+		$this->aps->sound	= new Sound;
 	}
 
 }

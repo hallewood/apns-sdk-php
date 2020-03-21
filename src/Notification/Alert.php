@@ -2,7 +2,7 @@
 
 namespace Hallewood\APNS\Notification;
 
-class Alert {
+class Alert implements JsonSerializable {
 
 	/**
 	 * The title of the notification-alert.
