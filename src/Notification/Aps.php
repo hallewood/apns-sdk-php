@@ -2,7 +2,7 @@
 
 namespace Hallewood\APNS\Notification;
 
-class Aps implements JsonSerializable {
+class Aps {
 
 	/**
 	 * A notification-alert object for specifying the notification text.
@@ -26,30 +26,69 @@ class Aps implements JsonSerializable {
 	 * An app-specific string for grouping related notifications into a thread.
 	 * @var string
 	 */
-	protected $threadId;
+	public $threadId;
 
 	/**
 	 * A category name that was defined in the app at launch time.
 	 * @var string
 	 */
-	protected $category;
+	public $category;
 
 	/**
 	 * Determines whether the notifiction is silent and used to update data in the background.
 	 * @var bool
 	 */
-	protected $isContentAvailable;
+	public $isContentAvailable;
 
 	/**
 	 * Determines whether the notification is being passed to the application notification service
 	 * app extension for handling the received data before displaying it.
 	 * @var bool
 	 */
-	protected $isMutableContent;
+	public $isMutableContent;
 
 	/**
 	 * An identifier to determine which window should be brought up after interacting with the notification.
 	 * @var string
 	 */
-	protected $targetContentId;
+	public $targetContentId;
+
+	/**
+	 * Construct the APS instance
+	 * @method __construct
+	 */
+	public function __construct() {
+		$this->alert = new Alert;
+		$this->sound = new Sound;
+	}
+
+	/**
+	 * Sets the number which will be visible in the badge
+	 * @method badge
+	 * @param  int   $number The number to show
+	 * @return self          The Aps instance for further setter chaining
+	 */
+	public function badge(int $number) : self {
+		$this->badge = max(0, $badge);
+
+		return $this;
+	}
+
+	/**
+	 * Gets the alert instance
+	 * @method getAlert
+	 * @return Alert    The alert instance
+	 */
+	public function getAlert() : Alert {
+		return $this->alert;
+	}
+
+	/**
+	 * Gets the sound isntance
+	 * @method getSound
+	 * @return Sound    The sound instande
+	 */
+	public function getSound() : Sound {
+		return $this->sound;
+	}
 }

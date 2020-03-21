@@ -1,19 +1,26 @@
 <?php
 
-namespace Hallewood\APNS\Notification;
+namespace Hallewood\APNS;
 
 use Hallewood\APNS\Notification\Aps;
-use Hallewood\APNS\Notification\Alert;
-use Hallewood\APNS\Notification\Sound;
 
-class Notification implements JsonSerializable {
+class Notification {
 
 	protected $aps;
 
 	public function __construct() {
-		$this->aps			= new Aps;
-		$this->aps->alert	= new Alert;
-		$this->aps->sound	= new Sound;
+		$this->aps = new Aps;
 	}
 
+	/**
+	 * Sets the sound file name
+	 * @method name
+	 * @param  string $name The name of the sound file
+	 * @return self         The Sound instance for further setter chaining
+	 */
+	public function sound(string $name, bool $critical = false, float $volume = 1.0) : self {
+		$this->name = $name;
+
+		return $this;
+	}
 }
