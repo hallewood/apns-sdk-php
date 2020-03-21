@@ -77,7 +77,7 @@ class Aps {
 	/**
 	 * Gets the alert instance
 	 * @method getAlert
-	 * @return Alert    The alert instance
+	 * @return Alert    The Alert instance
 	 */
 	public function getAlert() : Alert {
 		return $this->alert;
@@ -86,7 +86,7 @@ class Aps {
 	/**
 	 * Gets the sound isntance
 	 * @method getSound
-	 * @return Sound    The sound instande
+	 * @return Sound    The Sound instande
 	 */
 	public function getSound() : Sound {
 		return $this->sound;
