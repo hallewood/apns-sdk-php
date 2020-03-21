@@ -59,9 +59,9 @@ class Notification implements SerializesIntoJson {
 	 */
 	public function subtitle(string $subtitle, bool $localized = false, array $arguments = []) : self {
 		if ($localized) {
-			$this->aps->getAlert()->localizedSubtitle($title, $arguments);
+			$this->aps->getAlert()->localizedSubtitle($subtitle, $arguments);
 		} else {
-			$this->aps->getAlert()->subtitle($title);
+			$this->aps->getAlert()->subtitle($subtitle);
 		}
 
 		return $this;
@@ -77,9 +77,9 @@ class Notification implements SerializesIntoJson {
 	 */
 	public function body(string $body, bool $localized = false, array $arguments = []) : self {
 		if ($localized) {
-			$this->aps->getAlert()->localizedBody($title, $arguments);
+			$this->aps->getAlert()->localizedBody($body, $arguments);
 		} else {
-			$this->aps->getAlert()->body($title);
+			$this->aps->getAlert()->body($body);
 		}
 
 		return $this;

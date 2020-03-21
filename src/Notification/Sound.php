@@ -3,8 +3,9 @@
 namespace Hallewood\APNS\Notification;
 
 use Hallewood\APNS\Promises\Notification\SoundSetterPromise;
+use Hallewood\APNS\Promises\ContainsContent;
 
-class Sound implements SoundSetterPromise {
+class Sound implements SoundSetterPromise, ContainsContent {
 
 	/**
 	 * The name of the sound file to play when the notification is being received.
@@ -58,6 +59,15 @@ class Sound implements SoundSetterPromise {
 		$this->volume = min(1, max(0, $volume));
 
 		return $this;
+	}
+
+	/**
+	 * Checks whether the sound instance has any content to serialize
+	 * @method hasContent
+	 * @return bool       true if there is content to serialize
+	 */
+	public function hasContent() : bool {
+		return isset($this->name);
 	}
 
 	/**

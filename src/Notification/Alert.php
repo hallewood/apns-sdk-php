@@ -3,8 +3,9 @@
 namespace Hallewood\APNS\Notification;
 
 use Hallewood\APNS\Promises\Notification\AlertSetterPromise;
+use Hallewood\APNS\Promises\ContainsContent;
 
-class Alert implements AlertSetterPromise {
+class Alert implements AlertSetterPromise, ContainsContent {
 
 	/**
 	 * The title of the notification-alert.
@@ -246,17 +247,23 @@ class Alert implements AlertSetterPromise {
 
 		if (isset($this->localizedTitleKey)) {
 			$serializable['title-loc-key']	= $this->localizedTitleKey;
-			$serializable['title-loc-args']	= $this->localizedTitleArguments ?? [];
+			if (isset($this->localizedTitleArguments) && count($this->localizedTitleArguments)) {
+				$serializable['title-loc-args']	= $this->localizedTitleArguments;
+			}
 		}
 
 		if (isset($this->localizedSubtitleKey)) {
 			$serializable['subtitle-loc-key']	= $this->localizedSubtitleKey;
-			$serializable['subtitle-loc-args']	= $this->localizedSubtitleArguments ?? [];
+			if (isset($this->localizedSubtitleArguments) && count($this->localizedSubtitleArguments)) {
+				$serializable['subtitle-loc-args']	= $this->localizedSubtitleArguments;
+			}
 		}
 
 		if (isset($this->localizedKey)) {
 			$serializable['loc-key']	= $this->localizedKey;
-			$serializable['loc-args']	= $this->localizedArguments ?? [];
+			if (isset($this->localizedArguments) && count($this->localizedArguments)) {
+				$serializable['loc-args']	= $this->localizedArguments;
+			}
 		}
 
 		return $serializable;

@@ -108,7 +108,7 @@ class Aps {
 			$serializable['badge'] = $this->badge;
 		}
 
-		if (isset($this->getSound()->name)) {
+		if ($this->getSound()->hasContent()) {
 			$serializable['sound'] = $this->getSound()->jsonSerializable();
 		}
 
