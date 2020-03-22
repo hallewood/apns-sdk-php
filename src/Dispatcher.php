@@ -45,6 +45,7 @@ class Dispatcher {
 					$dispatchUnit->getNotification(),
 					$deviceToken,
 					$dispatchUnit->getApplicationBundle(),
+					$jws,
 					false
 				);
 
@@ -90,16 +91,17 @@ class Dispatcher {
 	 * @param  Notification      $notification The notification
 	 * @param  string            $deviceToken  The device token
 	 * @param  ApplicationBundle $bundle       The application bundle
+	 * @param  string            $jws          The JSON Web Signature
 	 * @param  boolean           $debug        Whether to use a production or development environment
 	 * @return DispatchResult                  A result
 	 */
-	private function request(Notification $notification, string $deviceToken, ApplicationBundle $bundle, bool $debug = false) : DispatchResult {
+	private function request(Notification $notification, string $deviceToken, ApplicationBundle $bundle, string $jws, bool $debug = false) : DispatchResult {
 		$host	= $debug ? 'api.development.push.apple.com' : 'api.push.apple.com';
 		$url	= 'https://'.$host.'/3/device/'.$deviceToken;
 
 		$header	= [
 			'apns-topic: '.$bundle->getBundleIdentifier(),
-			'Authorization: bearer '.$jsw
+			'Authorization: bearer '.$jws
 		];
 
 		$request = curl_init();
