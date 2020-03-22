@@ -33,7 +33,7 @@ class DispatchUnit {
 	 * @param  ApplicationBundle $applicationBundle The application bundle
 	 */
 	public function __construct(Notification $notification, array $deviceTokens, ApplicationBundle $applicationBundle) {
-		$this->notifiction			= $notification;
+		$this->notification			= $notification;
 		$this->deviceTokens			= $deviceTokens;
 		$this->applicationBundle	= $applicationBundle;
 	}

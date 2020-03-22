@@ -35,7 +35,7 @@ class Aps {
 	public $category;
 
 	/**
-	 * Determines whether the notifiction is silent and used to update data in the background.
+	 * Determines whether the notification is silent and used to update data in the background.
 	 * @var bool
 	 */
 	public $isContentAvailable = false;

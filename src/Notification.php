@@ -218,9 +218,9 @@ class Notification implements SerializesIntoJson {
 	 * @method push
 	 * @param  mixed $deviceTokenData  String or array of strings of device tokens
 	 * @param  function $prepare       A function which is called to prepare the notification
-	 * @return self                    The Notification instance for further chaining
+	 * @return DisptachResult          An array of results
 	 */
-	public function push($deviceTokenData, $prepare = null) : self {
+	public function push($deviceTokenData, $prepare = null) : array {
 		$dispatcher		= new Dispatcher;
 		$sharedBundle	= ApplicationBundle::getShared();
 
@@ -246,9 +246,7 @@ class Notification implements SerializesIntoJson {
 
 		//
 		// Dispatch all notifications
-		$dispatcher->push();
-
-		return $this;
+		return $dispatcher->push();
 	}
 
 	/**
