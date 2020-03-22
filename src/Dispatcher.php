@@ -126,6 +126,6 @@ class Dispatcher {
 			$dispatchResult->setInfo($info);
 		}
 
-		return $dispatchResult
+		return $dispatchResult;
 	}
 }
