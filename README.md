@@ -31,7 +31,7 @@ $notificationForAll->push($deviceTokens, function (Notification $notification, s
 	if ($deviceToken == 'token-2') {
 
 		//
-		// The second device token receives a personal greeting with a localized string
+		// The second device token receives an additional subtitle
 		$notification->subtitle('You are the second to receive a notification');
 	}
 
