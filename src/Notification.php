@@ -2,6 +2,7 @@
 
 namespace Hallewood\APNS;
 
+use Hallewood\APNS\Dispatch\DispatchUnit;
 use Hallewood\APNS\Notification\Aps;
 use Hallewood\APNS\Promises\SerializesIntoJson;
 
@@ -208,6 +209,44 @@ class Notification implements SerializesIntoJson {
 		foreach ($set as $key => $value) {
 			$this->userInfo($key, $value);
 		}
+
+		return $this;
+	}
+
+	/**
+	 * Pushes the notification
+	 * @method push
+	 * @param  mixed $deviceTokenData  String or array of strings of device tokens
+	 * @param  function $prepare       A function which is called to prepare the notification
+	 * @return self                    The Notification instance for further chaining
+	 */
+	public function push($deviceTokenData, $prepare = null) : self {
+		$dispatcher		= new Dispatcher;
+		$sharedBundle	= ApplicationBundle::getShared();
+
+		//
+		// If the device token data is not an array but a string
+		// then transform it to an array of string
+		if (!is_array($deviceTokenData) && is_string($deviceTokenData)) {
+			$deviceTokenData = [$deviceTokenData];
+		}
+
+		//
+		// Iterate through all device tokens and and append the notification to the dispatcher
+		foreach ($deviceTokenData as $deviceToken) {
+			if (!is_string($deviceToken)) {
+				continue;
+			}
+
+			$notification	= isset($prepare) ? $prepare($this, $deviceToken) : $this;
+			$dispatchUnit	= new DispatchUnit($notification, [$deviceToken], $sharedBundle);
+
+			$dispatcher->addDispatchUnit($dispatchUnit);
+		}
+
+		//
+		// Dispatch all notifications
+		$dispatcher->push();
 
 		return $this;
 	}

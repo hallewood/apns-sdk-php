@@ -58,7 +58,7 @@ class ApplicationBundle {
 	 * @return ApplicationBundle The shared application bundle
 	 */
 	public static function getShared() : ApplicationBundle {
-		if (!isset(self::$shared)) {
+		if (!isset(self::$sharedBundle)) {
 			throw new \Exception('No shared application bundle was set.');
 		}
 
